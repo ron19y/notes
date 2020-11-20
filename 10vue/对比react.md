@@ -254,8 +254,6 @@ class Welcome extends React.Component {
     return <div onClick={this.changeName}>{name}</div>;
   }
 }
-
-
 ```
 
 关于class组建的setState有以下两点说明：
@@ -269,8 +267,6 @@ class Welcome extends React.Component {
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
-
-
 ```
 
 ##### function组件useState
@@ -293,8 +289,6 @@ function Counter({initialCount}) {
     </>
   );
 }
-
-
 ```
 
 > 关于setState有以下三点说明：
@@ -339,9 +333,6 @@ export default {
   }
 }
 </script>
-
-
-
 ```
 
 父组件使用`@myEvent`监听自定义事件，回调函数参数是子组件传回的数据：
@@ -370,9 +361,6 @@ export default {
   }
 }
 </script>
-
-
-
 ```
 
 #### react
@@ -394,7 +382,6 @@ function Children(props) {
   };
   return <div onClick={changeName}>{name}</div>;
 } 
-
 ```
 
 父组件通过回调事件获取子组件传递的参数：
@@ -405,8 +392,7 @@ function Parent() {
     console.log(name);
   };
   return <Children myEvent={changeName}></Children>;
-} 
-
+}
 ```
 
 ### 5.2.跨组件数据交互(provide/inject vs Context)
@@ -446,7 +432,6 @@ export default {
   }
 }
 </script> 
-
 ```
 
 子组件通过inject选项获取祖先组件的provide选项值，inject选项应该是一个字符串数组或者对象。
@@ -465,7 +450,6 @@ export default {
   }
 }
 </script> 
-
 ```
 
 > 注意：provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
@@ -491,7 +475,6 @@ function Parent() {
     <Children myEvent={changeName}></Children>;
   </MyContext.Provider>); 
 } 
-
 ```
 
 消费组件获取Context有2种方式：
@@ -510,7 +493,6 @@ class DeepChildren1 extends React.Component {
     return <div>{this.context.theme}123</div>;
   }
 } 
-
 ```
 
 （2）函数式组件通过`Context.Consumer`订阅到Context的变更。
@@ -525,7 +507,6 @@ function DeepChildren(props) {
     }
   </MyContext.Consumer>);
 } 
-
 ```
 
 关于Context需要注意：
@@ -546,7 +527,6 @@ vue对class与style特意做了增强，可以传字符串、对象、数组。
 
 ```
 <div class="hello"></div> 
-
 ```
 
 （2）给class绑定对象：
@@ -556,7 +536,6 @@ vue对class与style特意做了增强，可以传字符串、对象、数组。
   class="static"
   :class="{ active: isActive, 'text-danger': hasError }"
 ></div> 
-
 ```
 
 data如下：
@@ -566,21 +545,18 @@ data: {
   isActive: true,
   hasError: false
 } 
-
 ```
 
 HTML 将被渲染为:
 
 ```
 <div class="static active"></div> 
-
 ```
 
 （3）给class绑定数组：
 
 ```
 <div :class="[activeClass, errorClass]"></div> 
-
 ```
 
 data如下：
@@ -590,14 +566,12 @@ data: {
   activeClass: 'active',
   errorClass: 'text-danger'
 } 
-
 ```
 
 HTML 将被渲染为:
 
 ```
 <div class="active text-danger"></div> 
-
 ```
 
 （4）class还可以直接绑定到组件上，这一点react并不支持。
@@ -608,21 +582,18 @@ HTML 将被渲染为:
 Vue.component('my-component', {
   template: '<p class="foo bar">Hi</p>'
 }) 
-
 ```
 
 在使用它的时候添加一些 class：
 
 ```
 <my-component class="baz boo"></my-component> 
-
 ```
 
 HTML 将被渲染为:
 
 ```
-<p class="foo bar baz boo">Hi</p> 
-
+<p class="foo bar baz boo">Hi</p>
 ```
 
 #### style
@@ -643,21 +614,18 @@ data: {
   activeColor: 'red',
   fontSize: 20
 } 
-
 ```
 
 HTML将被渲染为：
 
 ```
 <div style="color: red; font-size: 20px;"></div> 
-
 ```
 
 （2）传数组将多个样式应用到同一个元素上
 
 ```
 <div :style="[baseStyles, overridingStyles]"></div> 
-
 ```
 
 data如下：
@@ -669,15 +637,13 @@ baseStyles: {
 },
 overridingStyles: {
   height: '80px'
-}  
-
+} 
 ```
 
 HTML将被渲染为：
 
 ```
 <div style="font-size: 20px; color: blue; height: 80px;"></div> 
-
 ```
 
 ### react
@@ -694,7 +660,6 @@ react中className一般传值字符串常量或者字符串变量，不能传递
 function NewComponent() {
   return <div className="container" >This is New Component.</div>;
 } 
-
 ```
 
 （2）传字符串变量：
@@ -704,7 +669,6 @@ function NewComponent() {
   const newClass = 'conrainer'
   return <div className={newClass}>This is New Component.</div>;
 } 
-
 ```
 
 （3）传递多个class，可以使用es6的模板字符串实现：
@@ -725,14 +689,12 @@ function NewComponent() {
   const newClass = 'container';
   return <div className={classNames(newClass, 'newContainer', { bar: true }, ['new-class', { c: true }])}>This is New Component.</div>;
 } 
-
 ```
 
 html将被渲染为：
 
 ```
 <div class="container newContainer bar new-class c">This is New Component.</div> 
-
 ```
 
 #### style
@@ -750,9 +712,6 @@ const divStyle = {
 function HelloWorldComponent() {
   return <div style={divStyle}>Hello World!</div>;
 }
-
-
-
 ```
 
 注意：样式不会自动补齐前缀。如需支持旧版浏览器，请手动补充对应的样式属性：
@@ -766,9 +725,6 @@ const divStyle = {
 function ComponentWithTransition() {
   return <div style={divStyle}>This should work cross-browser</div>;
 }
-
-
-
 ```
 
 ## 7.生命周期
@@ -834,9 +790,6 @@ class Counter extends React.component{
         this.color = 'red';
     }
 }
-
-
-
 ```
 
 （2）挂载阶段
@@ -938,9 +891,6 @@ class ScrollingList extends React.Component {
     );
   }
 }
-
-
-
 ```
 
 （2）getSnapshotBeforeUpdate(prevProps, prevState)
@@ -982,9 +932,6 @@ class ScrollingList extends React.Component {
     );
   }
 }
-
-
-
 ```
 
 ## 8.事件处理(@Click vs onClick)
@@ -1003,9 +950,6 @@ event是原生 MouseEvent
 
 ```
 <div  @click="greet">Greet</div>
-
-
-
 ```
 
 method：
@@ -1016,9 +960,6 @@ method：
       console.log(event);
     }
   }
-
-
-
 ```
 
 （2）内联调用方法
@@ -1027,9 +968,6 @@ method：
 
 ```
 <div  @click="greet('hello')">Greet</div>
-
-
-
 ```
 
 method:
@@ -1040,18 +978,12 @@ methods: {
     this.message = message;
   }
 }
-
-
-
 ```
 
 有时也需要在method中访问原生DOM事件，可以将$event显式传入method中。
 
 ```
-<div  @click="greet('hello', $event)">Greet</div>
-
-
-
+<div  @click="greet('hello', $event)">Greet</div> 
 ```
 
 method:
@@ -1061,10 +993,7 @@ methods: {
   greet(message, event) {
     this.message = message;
   }
-}
-
-
-
+} 
 ```
 
 （3）事件修饰符和按键修饰符
@@ -1111,10 +1040,7 @@ Vue.js为事件添加了事件修饰符和按键修饰符（个人感觉这个�
 <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
 <!-- 而不会等待 `onScroll` 完成  -->
 <!-- 这其中包含 `event.preventDefault()` 的情况 --
-<div v-on:scroll.passive="onScroll">...</div>
-
-
-
+<div v-on:scroll.passive="onScroll">...</div> 
 ```
 
 Ⅱ. 按键修饰符
@@ -1137,10 +1063,7 @@ Vue.js为事件添加了事件修饰符和按键修饰符（个人感觉这个�
 使用 keyCode 特性也是允许的：
 
 ```
-<input v-on:keyup.13="submit">
-
-
-
+<input v-on:keyup.13="submit"> 
 ```
 
 ② 系统修饰键 
@@ -1156,10 +1079,7 @@ Vue.js为事件添加了事件修饰符和按键修饰符（个人感觉这个�
 
 ```
 <!-- 有且只有 Ctrl 被按下的时候才触发 -->
-<button @click.ctrl.exact="onCtrlClick">A</button>
-
-
-
+<button @click.ctrl.exact="onCtrlClick">A</button> 
 ```
 
 ④ 鼠标按钮修饰符 
@@ -1206,10 +1126,7 @@ class NewComponent extends React.Component {
   render() {
     return <div onClick={this.handleClick}>Click me</div>;
   }
-}
-
-
-
+} 
 ```
 
 箭头函数：
@@ -1228,10 +1145,7 @@ class NewComponent extends React.Component {
   render() {
     return <div onClick={this.handleClick}>Click me</div>;
   }
-}
-
-
-
+} 
 ```
 
 （2）事件处理程序传递参数
@@ -1256,10 +1170,7 @@ class NewComponent extends React.Component {
   render() {
     return <div onClick={(e) => this.handleClick(e, 'hello')}>Click me</div>;
   }
-}
-
-
-
+} 
 ```
 
 Ⅱ. 通过bind形式传递参数 
@@ -1279,9 +1190,7 @@ class NewComponent extends React.Component {
   render() {
     return <div onClick={this.handleClick.bind(this, 'hello')}>Click me</div>;
   }
-}
-
-
+} 
 ```
 
 
@@ -1329,9 +1238,7 @@ methodsToPatch.forEach(function (method) {
     ob.dep.notify()
     return result
   })
-})
-复制代码
-
+}) 
 ```
 
 反观 Proxy 就没以上的问题，原生支持监听数组变化，并且可以直接对整个对象进行拦截，所以 Vue 也将在下个大版本中使用 Proxy 替换 Object.defineProperty
@@ -1359,9 +1266,7 @@ let p = onWatch(obj, (v) => {
   console.log(`Get '${property}' = ${target[property]}`);
 })
 p.a = 2 // bind `value` to `2`
-p.a // -> Get 'a' = 2
-复制代码
-
+p.a // -> Get 'a' = 2 
 ```
 
 ### 虚拟 DOM
@@ -1443,9 +1348,7 @@ class ExampleComponent extends React.Component {
     // Return null to indicate no change to state.
     return null;
   }
-}
-复制代码
-
+} 
 ```
 
 `getSnapshotBeforeUpdate` 用于替换 `componentWillUpdate` ，该函数会在 `update` 后 DOM 更新前被调用，用于读取最新的 DOM 数据。
@@ -1480,9 +1383,7 @@ class ExampleComponent extends React.Component {
   UNSAFE_componentWillMount() {}
   UNSAFE_componentWillUpdate(nextProps, nextState) {}
   UNSAFE_componentWillReceiveProps(nextProps) {}
-}
-复制代码
-
+} 
 ```
 
 ### setState
@@ -1499,9 +1400,7 @@ handle() {
   this.setState({ count: this.state.count + 1 })
   this.setState({ count: this.state.count + 1 })
   console.log(this.state.count) // -> 0
-}
-复制代码
-
+} 
 ```
 
 第一，两次的打印都为 0，因为 `setState` 是个异步 API，只有同步代码运行完毕才会执行。`setState` 异步的原因我认为在于，`setState` 可能会导致 DOM 的重绘，如果调用一次就马上去进行重绘，那么调用多次就会造成不必要的性能损失。设计成异步的话，就可以将多次调用放入一个队列中，在恰当的时候统一进行更新过程。
@@ -1514,9 +1413,7 @@ Object.assign(
   { count: this.state.count + 1 },
   { count: this.state.count + 1 },
   { count: this.state.count + 1 },
-)
-复制代码
-
+) 
 ```
 
 当然你也可以通过以下方式来实现调用三次 `setState` 使得 `count` 为 3
@@ -1526,9 +1423,7 @@ handle() {
   this.setState((prevState) => ({ count: prevState.count + 1 }))
   this.setState((prevState) => ({ count: prevState.count + 1 }))
   this.setState((prevState) => ({ count: prevState.count + 1 }))
-}
-复制代码
-
+} 
 ```
 
 如果你想在每次调用 `setState` 后获得正确的 `state` ，可以通过如下代码实现`回调`
@@ -1538,9 +1433,7 @@ handle() {
     this.setState((prevState) => ({ count: prevState.count + 1 }), () => {
         console.log(this.state)
     })
-}
-复制代码
-
+} 
 ```
 
 ### Vue的 nextTick 原理
@@ -1573,9 +1466,7 @@ if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
   macroTimerFunc = () => {
     setTimeout(flushCallbacks, 0)
   }
-}
-复制代码
-
+} 
 ```
 
 `nextTick` 同时也支持 Promise 的使用，会判断是否实现了 Promise
@@ -1611,8 +1502,6 @@ export function nextTick(cb?: Function, ctx?: Object) {
       _resolve = resolve
     })
   }
-}
-复制代码
-
+} 
 ```
 
