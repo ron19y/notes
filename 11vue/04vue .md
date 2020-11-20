@@ -486,7 +486,6 @@ watch可以获取值类型的oldvalue，不能获取引用类型的oldvalue
 
 
 
-
 # vue组件通信 
 
 ## 组件之间的传值通信
